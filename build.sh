@@ -273,7 +273,7 @@ cd $BUILD_DIR/opencore-amr
 autoreconf -i
 automake --add-missing
 ./configure --prefix=$TARGET_DIR --disable-shared
-make
+make -j $jval
 make install
 
 echo "*** Building x264 ***"
@@ -436,6 +436,15 @@ echo "*** Building libtheora ***"
 git clone https://github.com/xiph/theora $BUILD_DIR/theora
 cd $BUILD_DIR/theora
 ./autogen.sh
+./configure --prefix=$TARGET_DIR --disable-shared
+make -j $jval
+make install
+
+echo "*** Building libamrwbenc ***"
+git clone https://github.com/mstorsjo/vo-amrwbenc $BUILD_DIR/amrwbenc
+cd $BUILD_DIR/amrwbenc
+autoreconf -i
+automake --add-missing
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
 make install
