@@ -267,6 +267,13 @@ fi
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
+echo "*** Building opencore-amr ***"
+git clone https://github.com/VFR-maniac/opencore-amr $BUILD_DIR
+cd $BUILD_DIR/opencore-amr*
+./configure --prefix=$TARGET_DIR --disable-shared
+make
+make install
+
 echo "*** Building x264 ***"
 cd $BUILD_DIR/x264*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -422,6 +429,7 @@ cd $BUILD_DIR/frei0r*
 PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR" .
 make
 make install
+
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
