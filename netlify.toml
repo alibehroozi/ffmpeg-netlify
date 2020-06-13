@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "chmod +x download-ffmpeg.sh && ./download-ffmpeg.sh && netlify-lambda build functions"
+  command = "netlify-lambda build functions && chmod +x download-ffmpeg.sh && ./download-ffmpeg.sh"
   functions = "build/functions"

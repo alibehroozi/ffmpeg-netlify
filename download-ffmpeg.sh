@@ -6,10 +6,8 @@ tar -xf ffmpeg-release-amd64-static.tar.xz
 
 cd ffmpeg-*
 
-mv ./ffmpeg ..
+mv ./ffmpeg ../build/functions
 
 cd ..
 
-chmod +x ./ffmpeg
-
-ls
+chmod +x ./build/functions
