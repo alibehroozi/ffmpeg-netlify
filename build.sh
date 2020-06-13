@@ -277,6 +277,14 @@ sed -i 's/-lgcc_s/-lgcc_eh/g' x265.pc
 make -j $jval
 make install
 
+echo "*** Building libogg ***"
+cd $BUILD_DIR/ogg*
+[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+./autogen.sh
+./configure --prefix=$TARGET_DIR --disable-shared
+make -j $jval
+make install
+
 echo "*** Building fdk-aac ***"
 cd $BUILD_DIR/fdk-aac*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -389,14 +397,6 @@ make install
 
 echo "*** Building libvorbis ***"
 cd $BUILD_DIR/vorbis*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./autogen.sh
-./configure --prefix=$TARGET_DIR --disable-shared
-make -j $jval
-make install
-
-echo "*** Building libogg ***"
-cd $BUILD_DIR/ogg*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 ./autogen.sh
 ./configure --prefix=$TARGET_DIR --disable-shared
