@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "apt-get -y install build-essential autoconf automake cmake libtool git"
+  command = "git clone https://aomedia.googlesource.com/aom"
   functions = "build/functions"
