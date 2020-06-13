@@ -276,6 +276,14 @@ automake --add-missing
 make
 make install
 
+echo "*** Building libtheora ***"
+git clone https://github.com/xiph/theora $BUILD_DIR/theora
+cd $BUILD_DIR/theora
+autogen.sh
+./configure --prefix=$TARGET_DIR --disable-shared
+make -j $jval
+make install
+
 echo "*** Building x264 ***"
 cd $BUILD_DIR/x264*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
