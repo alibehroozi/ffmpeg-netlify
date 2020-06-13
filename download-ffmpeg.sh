@@ -6,4 +6,10 @@ tar -xf ffmpeg-release-amd64-static.tar.xz
 
 cd ffmpeg-*
 
+mv ./ffmpeg ..
+
+cd ..
+
+chmod +x ./ffmpeg
+
 ls
