@@ -212,6 +212,12 @@ download \
   "https://github.com/xiph/speex/archive/"
 
 download \
+  "frei0r-plugins-1.6.1.tar.gz" \
+  "frei0r-plugins-1.6.1.tar.gz" \
+  "bb85573340029e5d0ae1c21d0685461d" \
+  "https://files.dyne.org/frei0r/releases/"
+
+download \
   "n4.0.tar.gz" \
   "ffmpeg4.0.tar.gz" \
   "4749a5e56f31e7ccebd3f9924972220f" \
@@ -409,6 +415,17 @@ cd $BUILD_DIR/speex*
 ./autogen.sh
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
+make install
+
+echo "*** Building frei0r ***"
+cd $BUILD_DIR/frei0r*
+mkdir -vp build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr    \
+      -DCMAKE_BUILD_TYPE=Release     \
+      -DOpenCV_DIR=/usr/share/OpenCV \
+      -Wno-dev ..                   
+make
 make install
 
 # FFMpeg
