@@ -421,10 +421,7 @@ echo "*** Building frei0r ***"
 cd $BUILD_DIR/frei0r*
 mkdir -vp build
 cd build
-cmake --prefix=$TARGET_DIR \
-      -DCMAKE_BUILD_TYPE=Release     \
-      --disable-shared \
-      -Wno-dev .. 
+cmake --prefix=$TARGET_DIR --disable-shared
 make
 make install
 
