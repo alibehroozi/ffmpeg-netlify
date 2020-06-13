@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "git clone https://github.com/zimbatm/ffmpeg-static && cd ffmpeg-static && ./build.sh"
+  command = "./build.sh"
   functions = "build/functions"
