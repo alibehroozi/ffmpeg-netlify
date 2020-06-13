@@ -1,7 +1,7 @@
 const { spawn } = require("child_process");
 
 exports.handler = (event, context, callback) => {
-  const ffmpeg = spawn("../ffmpeg", ["-v"]);
+  const ffmpeg = spawn("../../ffmpeg", ["-v"]);
   ffmpeg.stderr.setEncoding("utf8");
   ffmpeg.stdout.on("data", (data) => {
     console.log(data);
