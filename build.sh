@@ -421,10 +421,10 @@ echo "*** Building frei0r ***"
 cd $BUILD_DIR/frei0r*
 mkdir -vp build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr    \
+cmake --prefix=$TARGET_DIR \
       -DCMAKE_BUILD_TYPE=Release     \
-      -DOpenCV_DIR=/usr/share/OpenCV \
-      -Wno-dev ..                   
+      --disable-shared \
+      -Wno-dev .. 
 make
 make install
 
