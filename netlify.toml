@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "sudo add-apt-repository ppa:jonathonf/ffmpeg-4 && apt-get update && apt-get install ffmpeg && ffmpeg -version"
+  command = "apt-get -y install build-essential autoconf automake cmake libtool git"
   functions = "build/functions"
