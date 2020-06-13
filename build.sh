@@ -421,7 +421,7 @@ echo "*** Building frei0r ***"
 cd $BUILD_DIR/frei0r*
 mkdir -vp build
 cd build
-cmake --prefix=$TARGET_DIR --disable-shared
+PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR"
 make
 make install
 
