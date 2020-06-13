@@ -211,12 +211,6 @@ download \
   "bb85573340029e5d0ae1c21d0685461d" \
   "https://files.dyne.org/frei0r/releases/"
 
-download \
-  "n4.0.tar.gz" \
-  "ffmpeg4.0.tar.gz" \
-  "4749a5e56f31e7ccebd3f9924972220f" \
-  "https://github.com/FFmpeg/FFmpeg/archive"
-
 [ $download_only -eq 1 ] && exit 0
 
 TARGET_DIR_SED=$(echo $TARGET_DIR | awk '{gsub(/\//, "\\/"); print}')
@@ -453,88 +447,49 @@ make install
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
-cd $BUILD_DIR/FFmpeg*
+git clone https://github.com/FFmpeg/FFmpeg $BUILD_DIR/ffmpeg
+cd $BUILD_DIR/ffmpeg
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 
-if [ "$platform" = "linux" ]; then
-  [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
-  PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
-    --prefix="$TARGET_DIR" \
-    --pkg-config-flags="--static" \
-    --extra-cflags="-I$TARGET_DIR/include" \
-    --extra-ldflags="-L$TARGET_DIR/lib" \
-    --extra-libs="-lpthread -lm -lz" \
-    --extra-ldexeflags="-static" \
-    --bindir="$BIN_DIR" \
-    --enable-pic \
-    --enable-ffplay \
-    --enable-fontconfig \
-    --enable-frei0r \
-    --enable-gpl \
-    --enable-version3 \
-    --enable-libass \
-    --enable-libfribidi \
-    --enable-libfdk-aac \
-    --enable-libfreetype \
-    --enable-libmp3lame \
-    --enable-libopencore-amrnb \
-    --enable-libopencore-amrwb \
-    --enable-libopenjpeg \
-    --enable-libopus \
-    --enable-librtmp \
-    --enable-libsoxr \
-    --enable-libspeex \
-    --enable-libtheora \
-    --enable-libvidstab \
-    --enable-libvo-amrwbenc \
-    --enable-libvorbis \
-    --enable-libvpx \
-    --enable-libwebp \
-    --enable-libx264 \
-    --enable-libx265 \
-    --enable-libxvid \
-    --enable-libzimg \
-    --enable-nonfree \
-    --enable-openssl
-elif [ "$platform" = "darwin" ]; then
-  [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
-  PKG_CONFIG_PATH="${TARGET_DIR}/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/local/Cellar/openssl/1.0.2o_1/lib/pkgconfig" ./configure \
-    --cc=/usr/bin/clang \
-    --prefix="$TARGET_DIR" \
-    --pkg-config-flags="--static" \
-    --extra-cflags="-I$TARGET_DIR/include" \
-    --extra-ldflags="-L$TARGET_DIR/lib" \
-    --extra-ldexeflags="-Bstatic" \
-    --bindir="$BIN_DIR" \
-    --enable-pic \
-    --enable-ffplay \
-    --enable-fontconfig \
-    --enable-frei0r \
-    --enable-gpl \
-    --enable-version3 \
-    --enable-libass \
-    --enable-libfribidi \
-    --enable-libfdk-aac \
-    --enable-libfreetype \
-    --enable-libmp3lame \
-    --enable-libopencore-amrnb \
-    --enable-libopencore-amrwb \
-    --enable-libopenjpeg \
-    --enable-libopus \
-    --enable-librtmp \
-    --enable-libsoxr \
-    --enable-libspeex \
-    --enable-libvidstab \
-    --enable-libvorbis \
-    --enable-libvpx \
-    --enable-libwebp \
-    --enable-libx264 \
-    --enable-libx265 \
-    --enable-libxvid \
-    --enable-libzimg \
-    --enable-nonfree \
-    --enable-openssl
-fi
+[ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
+PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
+  --prefix="$TARGET_DIR" \
+  --pkg-config-flags="--static" \
+  --extra-cflags="-I$TARGET_DIR/include" \
+  --extra-ldflags="-L$TARGET_DIR/lib" \
+  --extra-libs="-lpthread -lm -lz" \
+  --extra-ldexeflags="-static" \
+  --bindir="$BIN_DIR" \
+  --enable-pic \
+  --enable-ffplay \
+  --enable-fontconfig \
+  --enable-frei0r \
+  --enable-gpl \
+  --enable-version3 \
+  --enable-libass \
+  --enable-libfribidi \
+  --enable-libfdk-aac \
+  --enable-libfreetype \
+  --enable-libmp3lame \
+  --enable-libopencore-amrnb \
+  --enable-libopencore-amrwb \
+  --enable-libopenjpeg \
+  --enable-libopus \
+  --enable-librtmp \
+  --enable-libsoxr \
+  --enable-libspeex \
+  --enable-libtheora \
+  --enable-libvidstab \
+  --enable-libvo-amrwbenc \
+  --enable-libvorbis \
+  --enable-libvpx \
+  --enable-libwebp \
+  --enable-libx264 \
+  --enable-libx265 \
+  --enable-libxvid \
+  --enable-libzimg \
+  --enable-nonfree \
+  --enable-openssl
 
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
