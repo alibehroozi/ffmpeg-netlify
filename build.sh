@@ -188,12 +188,6 @@ download \
   "https://github.com/uclouvain/openjpeg/archive/"
 
 download \
-  "v0.6.1.tar.gz" \
-  "libwebp-0.6.1.tar.gz" \
-  "1c3099cd2656d0d80d3550ee29fc0f28" \
-  "https://github.com/webmproject/libwebp/archive/"
-
-download \
   "v1.3.6.tar.gz" \
   "vorbis-1.3.6.tar.gz" \
   "03e967efb961f65a313459c5d0f4cbfb" \
@@ -403,7 +397,8 @@ make -j $jval
 make install
 
 echo "*** Building libwebp ***"
-cd $BUILD_DIR/libwebp*
+git clone https://github.com/webmproject/libwebp $BUILD_DIR/libwebp
+cd $BUILD_DIR/libwebp
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 ./autogen.sh
 ./configure --prefix=$TARGET_DIR --disable-shared
