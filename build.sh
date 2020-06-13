@@ -268,8 +268,8 @@ PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
 echo "*** Building opencore-amr ***"
-git clone https://github.com/VFR-maniac/opencore-amr $BUILD_DIR
-cd $BUILD_DIR/opencore-amr*
+git clone https://github.com/VFR-maniac/opencore-amr $BUILD_DIR/opencore-amr
+cd $BUILD_DIR/opencore-amr
 ./configure --prefix=$TARGET_DIR --disable-shared
 make
 make install
