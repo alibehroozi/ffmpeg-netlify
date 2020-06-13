@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "chmod +x ./build.sh && chmod +x ./download.pl && chmod +x ./env.source && chmod +x ./fetchurl && ./build.sh"
+  command = "netlify-lambda build functions"
   functions = "build/functions"
