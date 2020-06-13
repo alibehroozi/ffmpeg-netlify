@@ -449,12 +449,12 @@ automake --add-missing
 make -j $jval
 make install
 
-# echo "*** Building libxvid ***"
-# git clone https://github.com/clear39/avcode-libxvidcore $BUILD_DIR/libxvidcore
-# cd $BUILD_DIR/libxvidcore/build/generic
-# ./configure --prefix=$TARGET_DIR --disable-shared
-# make -j $jval
-# make install
+echo "*** Building libxvid ***"
+git clone https://github.com/clear39/avcode-libxvidcore $BUILD_DIR/libxvidcore
+cd $BUILD_DIR/libxvidcore/build/generic
+./configure --prefix=$TARGET_DIR --disable-shared
+make -j $jval
+make install
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
