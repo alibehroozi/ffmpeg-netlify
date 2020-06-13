@@ -279,7 +279,7 @@ make install
 echo "*** Building libtheora ***"
 git clone https://github.com/xiph/theora $BUILD_DIR/theora
 cd $BUILD_DIR/theora
-autogen.sh
+./autogen.sh
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
 make install
