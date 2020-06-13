@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "./build.sh"
+  command = "chmod +x ./build.sh && ./build.sh"
   functions = "build/functions"
