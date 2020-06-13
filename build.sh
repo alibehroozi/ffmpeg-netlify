@@ -193,6 +193,14 @@ download \
   "03e967efb961f65a313459c5d0f4cbfb" \
   "https://github.com/xiph/vorbis/archive/"
 
+
+download \
+  "v0.4.4.tar.gz" \
+  "libwebp-0.4.4.tar.gz" \
+  "" \
+  "https://github.com/webmproject/libwebp/archive/"
+
+
 download \
   "v1.3.3.tar.gz" \
   "ogg-1.3.3.tar.gz" \
@@ -391,8 +399,7 @@ make -j $jval
 make install
 
 echo "*** Building libwebp ***"
-git clone https://github.com/webmproject/libwebp $BUILD_DIR/libwebp
-cd $BUILD_DIR/libwebp
+cd $BUILD_DIR/libwebp*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 ./autogen.sh
 ./configure --prefix=$TARGET_DIR --disable-shared
