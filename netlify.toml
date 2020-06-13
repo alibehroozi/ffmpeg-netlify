@@ -1,4 +1,4 @@
 [build]
   publish = "build"
-  command = "git clone https://aomedia.googlesource.com/aom"
+  command = "git clone https://aomedia.googlesource.com/aom && cmake aom/ -DBUILD_SHARED_LIBS=1"
   functions = "build/functions"
