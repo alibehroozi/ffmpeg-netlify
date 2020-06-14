@@ -1,7 +1,7 @@
 const { spawn } = require("child_process");
 
 exports.handler = (event, context, callback) => {
-  const ffmpeg = spawn("ls", []);
+  const ffmpeg = spawn("ls src", []);
   ffmpeg.stderr.setEncoding("utf8");
   ffmpeg.stdout.on("data", (data) => {
     console.log(data.toString());
